@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOSF Conference 2026</title>
+    <!-- Replace with your actual favicon -->
+    <link rel="icon" type="image/png" href="logo.png" onerror="this.href='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌱</text></svg>'">
+    
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==3" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        /* Define custom fonts and colors based on your reference */
+        :root {
+            --primary-blue: #0033CC; /* Darker blue */
+            --primary-purple: #6600CC; /* Purple */
+            --body-font: 'Montserrat', sans-serif;
+        }
+
+        body {
+            font-family: var(--body-font);
+            color: #333;
+            font-size: 16px;
+            line-height: 1.3;
+        }
+
+        /* Section Title Styling */
+        .section-title {
+            color: var(--primary-purple);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem; /* Reduced margin */
+            line-height: 1;
+        }
+
+        /* Main Header Background - UPDATED */
+        .main-header {
+            position: relative;
+            /* Path to your uploaded image in the template folder */
+            background-image: url('images/template/vinuni-landscape.jpg');
+            background-size: cover;
+            background-position: center;
+            /* Increased height to show image above/below strip */
+            min-height: 350px; 
+            display: flex;
+            align-items: center; /* Vertically center content */
+            justify-content: center; /* Horizontally center content */
+            padding: 2rem;
+            border-radius: 0; /* Removed rounded corners for full width feel */
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        /* Text Box Wrapper - UPDATED: Transparency 0.3 */
+        .header-text-box {
+            width: auto; /* Fit to content width */
+            max-width: 90%; /* Prevent it from touching edges on small screens */
+            background-color: rgba(0, 51, 204, 0.3); /* Theme blue with 0.3 transparency */
+            padding: 2rem;
+            text-align: center;
+            backdrop-filter: blur(2px);
+            border-radius: 0.5rem; /* Rounded corners */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .conference-subtitle {
+            color: #ffffff; /* White text */
+            font-size: 2rem; /* Increased size since it's now the main title */
+            font-weight: 700;
+            margin-top: 0;
+            line-height: 1.2;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .conference-meta {
+            color: #e0e7ff; /* Lighter blue-white */
+            font-size: 1.1rem;
+            margin-top: 1rem;
+            font-weight: 500;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5); /* Added shadow for legibility on transparent bg */
+        }
+
+        /* Sidebar navigation link */
+        .sidebar-link {
+            display: block;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--primary-blue);
+            margin-bottom: 0.25rem; /* Reduced margin */
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+            transition: background-color 0.2s, color 0.2s;
+        }
+        .sidebar-link:hover, .sidebar-link.active {
+            background-color: rgba(0, 51, 204, 0.1);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        /* Content Links */
+        a.content-link {
+            color: var(--primary-blue);
+            font-weight: 500;
+            text-decoration: none;
+        }
+        a.content-link:hover {
+            text-decoration: underline;
+            color: var(--primary-purple);
+        }
+        
+        /* List Styling */
+        .styled-list li {
+            margin-bottom: 0.25rem; /* Reduced margin */
+        }
+        
+        /* Map Container */
+        .map-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .map-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Sponsor Logos Grid */
+        .sponsor-grid {
+            display: flex; /* Changed to flex for better centering of 2 items */
+            justify-content: center;
+            gap: 1.5rem; /* Reduced gap */
+            align-items: center;
+            margin-top: 0.5rem; /* Reduced margin */
+            flex-wrap: wrap;
+        }
+        .sponsor-img {
+            height: 80px; /* Fixed height for consistency */
+            width: auto;
+            object-fit: contain;
+            /* Removed grayscale filter so logos show true colors */
+            transition: transform 0.3s;
+        }
+        .sponsor-img:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Photo placeholder styling - Square format */
+        .profile-icon {
+            width: 3rem;
+            height: 3rem;
+            border-radius: 0.375rem; /* Small radius for square look */
+            border: 1px solid #e5e7eb;
+            background-color: #EBF4FF;
+            color: #0033CC;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-700">
+
+    <!-- Removed max-w-7xl to span full width, keeping some horizontal padding -->
+    <div class="w-full px-4 sm:px-6 lg:px-8">
+        
+        <!-- Main Header: Conference Details -->
+        <header class="main-header -mx-4 sm:-mx-6 lg:-mx-8"> <!-- Negative margins to touch edges if needed -->
+            <div class="header-text-box">
+                <h1 class="conference-subtitle">Learning and Optimization for a Sustainable Future</h1>
+                <div class="conference-meta">
+                    <i class="fa-regular fa-calendar mr-2"></i> July 1-3, 2026 <br class="sm:hidden">
+                    <span class="hidden sm:inline mx-2">|</span>
+                    <i class="fa-solid fa-location-dot mr-2"></i> VinUniversity, Hanoi, Vietnam
+                </div>
+            </div>
+        </header>
+
+        <div class="md:flex gap-10">
+            
+            <!-- Left Sidebar Navigation -->
+            <aside class="w-full md:w-64 md:flex-shrink-0 mb-8 md:mb-0">
+                <nav class="flex flex-col sticky top-6">
+                    <a href="#home" class="sidebar-link active" id="link-home">
+                        <i class="fa-solid fa-house w-6"></i> Home
+                    </a>
+                    <!-- SWAPPED: Changed from Participants to Organizers -->
+                    <a href="#organizers" class="sidebar-link" id="link-organizers">
+                        <i class="fa-solid fa-users w-6"></i> Organizers
+                    </a>
+                    <a href="#program" class="sidebar-link" id="link-program">
+                        <i class="fa-regular fa-calendar-days w-6"></i> Program
+                    </a>
+                    <a href="#registration" class="sidebar-link" id="link-registration">
+                        <i class="fa-solid fa-ticket w-6"></i> Registration
+                    </a>
+                    <a href="#accommodation" class="sidebar-link" id="link-accommodation">
+                        <i class="fa-solid fa-hotel w-6"></i> Accommodation
+                    </a>
+                    <a href="#contacts" class="sidebar-link" id="link-contacts">
+                        <i class="fa-solid fa-envelope w-6"></i> Contacts
+                    </a>
+                    
+                    <hr class="my-4 border-gray-200">
+                    
+                    <div class="text-sm text-gray-500 px-2">
+                        <p class="font-bold mb-2">Previous Editions</p>
+                        <!-- Kept as placeholder, no links yet -->
+                        <span class="text-gray-400 italic">First Edition (2026)</span>
+                    </div>
+                </nav>
+            </aside>
+
+            <!-- Main Content Area -->
+            <main class="flex-1">
+
+                <!-- Home Section -->
+                <section id="home" class="mb-8"> <!-- Reduced margin bottom -->
+                    <h2 class="section-title">Home</h2>
+                    
+                    <div class="space-y-4"> <!-- Reduced spacing between blocks -->
+                        <!-- Dates & Venue -->
+                        <div class="bg-blue-50 p-4 rounded-lg border border-blue-100"> <!-- Reduced padding -->
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Event Details</h3> <!-- Reduced margin -->
+                            <ul class="space-y-1"> <!-- Tightened list spacing -->
+                                <li class="flex items-start">
+                                    <i class="fa-regular fa-clock mt-1 w-6 text-blue-700"></i>
+                                    <div>
+                                        <strong>Dates:</strong> July 1 (Wed) - July 3 (Fri), 2026
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-building-columns mt-1 w-6 text-blue-700"></i>
+                                    <div>
+                                        <strong>Venue:</strong> College of Engineering & Computer Science, VinUniversity
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-location-arrow mt-1 w-6 text-blue-700"></i>
+                                    <div>
+                                        <strong>Address:</strong> Vinhomes Ocean Park, Gia Lam District, Hanoi, Vietnam
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Conference Topics -->
+                        <div>
+                            <h3 class="section-title text-xl">Topics</h3>
+                            <p class="mb-2">This year's conference focuses on the following key areas:</p>
+                            <ul class="list-disc list-inside space-y-1 pl-2 bg-gray-50 p-3 rounded-lg"> <!-- Tightened list -->
+                                <li>Large-Scale Learning and Optimization for Sustainable Systems</li>
+                                <li>Machine Learning for Climate and Earth Systems Modeling</li>
+                                <li>Robust and Efficient Learning in Resource-Constrained Environments</li>
+                                <li>Reinforcement Learning and Control for Energy Management</li>
+                            </ul>
+                        </div>
+
+                        <!-- SWAPPED: Participants moved here (formerly Organizers) -->
+                        <div>
+                            <h3 class="section-title text-xl">Confirmed Participants</h3>
+                            <p class="mb-4">We are honored to host the following distinguished speakers and participants:</p>
+                            
+                            <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+                                <ul class="divide-y divide-gray-200">
+                                    
+                                    <!-- Stephen P. Boyd -->
+                                    <li class="p-3 hover:bg-gray-50 transition flex items-center">
+                                        <div class="flex-shrink-0 mr-4">
+                                            <div class="profile-icon">
+                                                <i class="fa-solid fa-user"></i>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="text-lg font-bold">
+                                                <a href="https://web.stanford.edu/~boyd/" target="_blank" class="text-gray-900 hover:text-blue-700 transition-colors">Stephen P. Boyd</a>
+                                            </div>
+                                            <p class="text-gray-600 text-sm">
+                                                Stanford University
+                                            </p>
+                                        </div>
+                                    </li>
+
+                                    <!-- Nitesh V. Chawla -->
+                                    <li class="p-3 hover:bg-gray-50 transition flex items-center">
+                                        <div class="flex-shrink-0 mr-4">
+                                            <div class="profile-icon">
+                                                <i class="fa-solid fa-user"></i>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="text-lg font-bold">
+                                                <a href="https://niteshchawla.nd.edu/" target="_blank" class="text-gray-900 hover:text-blue-700 transition-colors">Nitesh V. Chawla</a>
+                                            </div>
+                                            <p class="text-gray-600 text-sm">
+                                                University of Notre Dame
+                                            </p>
+                                        </div>
+                                    </li>
+
+                                    <!-- Sebastian Pokutta -->
+                                    <li class="p-3 hover:bg-gray-50 transition flex items-center">
+                                        <div class="flex-shrink-0 mr-4">
+                                            <div class="profile-icon">
+                                                <i class="fa-solid fa-user"></i>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="text-lg font-bold">
+                                                <a href="https://pokutta.com/" target="_blank" class="text-gray-900 hover:text-blue-700 transition-colors">Sebastian Pokutta</a>
+                                            </div>
+                                            <p class="text-gray-600 text-sm">
+                                                Zuse Institute Berlin (ZIB)
+                                            </p>
+                                        </div>
+                                    </li>
+
+                                    <!-- Melvyn Sim -->
+                                    <li class="p-3 hover:bg-gray-50 transition flex items-center">
+                                        <div class="flex-shrink-0 mr-4">
+                                            <div class="profile-icon">
+                                                <i class="fa-solid fa-user"></i>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="text-lg font-bold">
+                                                <a href="https://iora.nus.edu.sg/people-p/melvyn-sim/" target="_blank" class="text-gray-900 hover:text-blue-700 transition-colors">Melvyn Sim</a>
+                                            </div>
+                                            <p class="text-gray-600 text-sm">
+                                                National University of Singapore
+                                            </p>
+                                        </div>
+                                    </li>
+
+                                    <!-- Yong-Sheng Soh -->
+                                    <li class="p-3 hover:bg-gray-50 transition flex items-center">
+                                        <div class="flex-shrink-0 mr-4">
+                                            <div class="profile-icon">
+                                                <i class="fa-solid fa-user"></i>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="text-lg font-bold">
+                                                <a href="https://yssoh.github.io/" target="_blank" class="text-gray-900 hover:text-blue-700 transition-colors">Yong-Sheng Soh</a>
+                                            </div>
+                                            <p class="text-gray-600 text-sm">
+                                                National University of Singapore
+                                            </p>
+                                        </div>
+                                    </li>
+
+                                    <!-- Masashi Sugiyama -->
+                                    <li class="p-3 hover:bg-gray-50 transition flex items-center">
+                                        <div class="flex-shrink-0 mr-4">
+                                            <div class="profile-icon">
+                                                <i class="fa-solid fa-user"></i>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="text-lg font-bold">
+                                                <a href="https://www.ms.k.u-tokyo.ac.jp/sugi/" target="_blank" class="text-gray-900 hover:text-blue-700 transition-colors">Masashi Sugiyama</a>
+                                            </div>
+                                            <p class="text-gray-600 text-sm">
+                                                The University of Tokyo
+                                            </p>
+                                        </div>
+                                    </li>
+
+                                    <!-- Yinyu Ye -->
+                                    <li class="p-3 hover:bg-gray-50 transition flex items-center">
+                                        <div class="flex-shrink-0 mr-4">
+                                            <div class="profile-icon">
+                                                <i class="fa-solid fa-user"></i>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="text-lg font-bold">
+                                                <a href="https://web.stanford.edu/~yyye/" target="_blank" class="text-gray-900 hover:text-blue-700 transition-colors">Yinyu Ye</a>
+                                            </div>
+                                            <p class="text-gray-600 text-sm">
+                                                Stanford University
+                                            </p>
+                                        </div>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Sponsors -->
+                        <div>
+                            <h3 class="section-title text-xl">Sponsors</h3>
+                            <p class="mb-2 text-center">We gratefully acknowledge the support from our sponsors:</p>
+                            <div class="sponsor-grid">
+                                <!-- VinUni Logo -->
+                                <div class="text-center">
+                                    <img src="images/template/vinuni-logo-flat.png" alt="VinUniversity" class="sponsor-img" onerror="this.src='https://placehold.co/200x80/white/0033CC?text=VinUni+Logo'">
+                                </div>
+                                <!-- CEI Logo -->
+                                <div class="text-center">
+                                    <img src="images/template/cei-logo-flat.webp" alt="CEI" class="sponsor-img" onerror="this.src='https://placehold.co/200x80/white/6600CC?text=CEI+Logo'">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Google Map -->
+                        <div>
+                            <h3 class="section-title text-xl">Location Map</h3>
+                            <div class="map-container">
+                                <!-- Embed for VinUniversity Library using exact coordinates and marker mode -->
+                                <iframe src="https://maps.google.com/maps?q=20.9892299,105.9450791+(VinUniversity+Library)&t=&z=18&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Program Section -->
+                <section id="program" class="mb-8 hidden">
+                    <h2 class="section-title">Program</h2>
+                    <div class="bg-gray-50 border border-gray-200 rounded-lg p-6 text-center">
+                        <i class="fa-regular fa-calendar-days text-4xl text-gray-300 mb-4"></i>
+                        <p class="text-gray-500 text-lg">The detailed program schedule will be announced later.</p>
+                    </div>
+                </section>
+
+                <!-- Registration Section -->
+                <section id="registration" class="mb-8 hidden">
+                    <h2 class="section-title">Registration</h2>
+                    <div class="bg-gray-50 border border-gray-200 rounded-lg p-6 text-center">
+                        <i class="fa-solid fa-ticket text-4xl text-gray-300 mb-4"></i>
+                        <p class="text-gray-500 text-lg">Registration information will be available soon.</p>
+                    </div>
+                </section>
+
+                <!-- Accommodation Section -->
+                <section id="accommodation" class="mb-8 hidden">
+                    <h2 class="section-title">Accommodation</h2>
+                    <div class="bg-gray-50 border border-gray-200 rounded-lg p-6 text-center">
+                        <i class="fa-solid fa-hotel text-4xl text-gray-300 mb-4"></i>
+                        <p class="text-gray-500 text-lg">Information regarding accommodation and recommended hotels will be posted shortly.</p>
+                    </div>
+                </section>
+
+                <!-- SWAPPED: Organizers Section (Formerly Participants) -->
+                <section id="organizers" class="mb-8 hidden">
+                    <h2 class="section-title">Organizers</h2>
+                    <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+                        <ul class="divide-y divide-gray-200">
+                            <!-- Organizer 1: Laurent El Ghaoui -->
+                            <li class="p-3 hover:bg-gray-50 transition flex items-center"> <!-- Reduced padding -->
+                                <div class="flex-shrink-0 mr-4">
+                                    <div class="profile-icon">
+                                        <i class="fa-solid fa-user"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="text-lg font-bold">
+                                        <a href="https://vinuni.edu.vn/people/laurent-el-ghaoui-phd-2/" target="_blank" class="text-gray-900 hover:text-blue-700 transition-colors">Laurent El Ghaoui</a>
+                                    </div>
+                                    <p class="text-gray-600 text-sm">VinUniversity</p>
+                                </div>
+                            </li>
+                            <!-- Organizer 2: Binh T. Nguyen -->
+                            <li class="p-3 hover:bg-gray-50 transition flex items-center">
+                                <div class="flex-shrink-0 mr-4">
+                                    <div class="profile-icon">
+                                        <i class="fa-solid fa-user"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="text-lg font-bold">
+                                        <a href="https://tbng.github.io/" target="_blank" class="text-gray-900 hover:text-blue-700 transition-colors">Binh T. Nguyen</a>
+                                    </div>
+                                    <p class="text-gray-600 text-sm">VinUniversity</p>
+                                </div>
+                            </li>
+                            <!-- Organizer 3: Hong T.M. Chu -->
+                            <li class="p-3 hover:bg-gray-50 transition flex items-center">
+                                <div class="flex-shrink-0 mr-4">
+                                    <div class="profile-icon">
+                                        <i class="fa-solid fa-user"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="text-lg font-bold">
+                                        <a href="https://hongtmchu.github.io/" target="_blank" class="text-gray-900 hover:text-blue-700 transition-colors">Hong T.M. Chu</a>
+                                    </div>
+                                    <p class="text-gray-600 text-sm">VinUniversity</p>
+                                </div>
+                            </li>
+                            <!-- Organizer 4: Nguyen Hoang Bao Tram -->
+                            <li class="p-3 hover:bg-gray-50 transition flex items-center">
+                                <div class="flex-shrink-0 mr-4">
+                                    <div class="profile-icon">
+                                        <i class="fa-solid fa-user"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="text-lg font-bold text-gray-900">
+                                        Nguyen Hoang Bao Tram
+                                    </div>
+                                    <p class="text-gray-600 text-sm">VinUniversity</p>
+                                </div>
+                            </li>
+                            <!-- Organizer 5: Mai Anh Linh -->
+                            <li class="p-3 hover:bg-gray-50 transition flex items-center">
+                                <div class="flex-shrink-0 mr-4">
+                                    <div class="profile-icon">
+                                        <i class="fa-solid fa-user"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="text-lg font-bold text-gray-900">
+                                        Mai Anh Linh
+                                    </div>
+                                    <p class="text-gray-600 text-sm">VinUniversity</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Contacts Section -->
+                <section id="contacts" class="mb-8 hidden">
+                    <h2 class="section-title">Organizing Committee Contacts</h2>
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        
+                        <!-- Academic Inquiries -->
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2 border-b border-purple-200 pb-2">
+                                <i class="fa-solid fa-graduation-cap mr-2 text-purple-700"></i>Academic Inquiries
+                            </h3>
+                            <div class="space-y-2">
+                                <!-- Contact Card -->
+                                <div class="bg-white p-3 rounded shadow-sm border border-gray-100">
+                                    <p class="font-bold text-blue-800">Binh T. Nguyen</p>
+                                    <a href="mailto:binh.nt2@vinuni.edu.vn" class="text-sm text-gray-600 hover:text-blue-600 block mt-1">
+                                        <i class="fa-solid fa-envelope mr-1"></i> binh.nt2@vinuni.edu.vn
+                                    </a>
+                                </div>
+
+                                <!-- Contact Card -->
+                                <div class="bg-white p-3 rounded shadow-sm border border-gray-100">
+                                    <p class="font-bold text-blue-800">Hong T. M. Chu</p>
+                                    <a href="mailto:hong.ctm@vinuni.edu.vn" class="text-sm text-gray-600 hover:text-blue-600 block mt-1">
+                                        <i class="fa-solid fa-envelope mr-1"></i> hong.ctm@vinuni.edu.vn
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Administrative Support -->
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2 border-b border-purple-200 pb-2">
+                                <i class="fa-solid fa-clipboard-list mr-2 text-purple-700"></i>Administrative Support
+                            </h3>
+                            <div class="space-y-2">
+                                <!-- Contact Card -->
+                                <div class="bg-white p-3 rounded shadow-sm border border-gray-100">
+                                    <p class="font-bold text-blue-800">Nguyen Hoang Bao Tram</p>
+                                    <a href="mailto:tram.nhb@vinuni.edu.vn" class="text-sm text-gray-600 hover:text-blue-600 block mt-1">
+                                        <i class="fa-solid fa-envelope mr-1"></i> tram.nhb@vinuni.edu.vn
+                                    </a>
+                                </div>
+                                
+                                <!-- Contact Card -->
+                                <div class="bg-white p-3 rounded shadow-sm border border-gray-100">
+                                    <p class="font-bold text-blue-800">Mai Anh Linh</p>
+                                    <a href="mailto:linh.ma@vinuni.edu.vn" class="text-sm text-gray-600 hover:text-blue-600 block mt-1">
+                                        <i class="fa-solid fa-envelope mr-1"></i> linh.ma@vinuni.edu.vn
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </section>
+
+                <!-- Footer -->
+                <footer class="mt-12 border-t border-gray-200 pt-6">
+                    <div class="text-center text-sm text-gray-500">
+                        <p>&copy; <span id="year">2026</span> LOSF Conference. All rights reserved.</p>
+                        <p class="mt-2">Hosted at <a href="https://vinuni.edu.vn/" target="_blank" class="text-blue-600 hover:underline">VinUniversity</a></p>
+                    </div>
+                </footer>
+
+            </main>
+        </div>
+    </div>
+
+    <script>
+        // Function to handle section switching
+        function showSection(targetId) {
+            // Hide all sections
+            document.querySelectorAll('main section').forEach(section => {
+                section.classList.add('hidden');
+            });
+
+            // Remove active class from all sidebar links
+            document.querySelectorAll('.sidebar-link').forEach(link => {
+                link.classList.remove('active');
+            });
+
+            // Show target section
+            const targetSection = document.getElementById(targetId);
+            if (targetSection) {
+                targetSection.classList.remove('hidden');
+            }
+
+            // Highlight active sidebar link
+            const activeLink = document.querySelector(`a[href="#${targetId}"]`);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+            
+            // Scroll to top of main area
+            window.scrollTo(0, 0); 
+        }
+
+        // Event Listeners for Navigation
+        document.querySelectorAll('.sidebar-link').forEach(link => {
+            link.addEventListener('click', function(e) { 
+                // Only prevent default if it's an internal anchor
+                if(this.getAttribute('href').startsWith('#')) {
+                    e.preventDefault(); 
+                    const targetId = this.getAttribute('href').substring(1); 
+                    showSection(targetId);
+                }
+            });
+        });
+        
+        // Initial Load
+        document.addEventListener('DOMContentLoaded', () => {
+             // Check URL hash for deep linking
+             const hash = window.location.hash.substring(1);
+             if (hash && document.getElementById(hash)) {
+                 showSection(hash);
+             } else {
+                 // Default to Home
+                 showSection('home');
+             }
+             
+             // Set current year in footer
+             document.getElementById('year').textContent = new Date().getFullYear();
+        });
+    </script>
+</body>
+</html>

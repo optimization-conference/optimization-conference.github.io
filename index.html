@@ -277,129 +277,10 @@
                             <h3 class="section-title text-xl">Confirmed Participants</h3>
                             <p class="mb-4">We are honored to host the following distinguished speakers and participants:</p>
                             
-                            <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
-                                <ul class="divide-y divide-gray-200">
-                                    
-                                    <!-- Stephen P. Boyd -->
-                                    <li class="p-3 hover:bg-gray-50 transition flex items-center">
-                                        <div class="flex-shrink-0 mr-4">
-                                            <div class="profile-icon">
-                                                <i class="fa-solid fa-user"></i>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div class="text-lg font-bold">
-                                                <a href="https://web.stanford.edu/~boyd/" target="_blank" class="text-gray-900 hover:text-blue-700 transition-colors">Stephen P. Boyd</a>
-                                            </div>
-                                            <p class="text-gray-600 text-sm">
-                                                Stanford University
-                                            </p>
-                                        </div>
-                                    </li>
-
-                                    <!-- Nitesh V. Chawla -->
-                                    <li class="p-3 hover:bg-gray-50 transition flex items-center">
-                                        <div class="flex-shrink-0 mr-4">
-                                            <div class="profile-icon">
-                                                <i class="fa-solid fa-user"></i>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div class="text-lg font-bold">
-                                                <a href="https://niteshchawla.nd.edu/" target="_blank" class="text-gray-900 hover:text-blue-700 transition-colors">Nitesh V. Chawla</a>
-                                            </div>
-                                            <p class="text-gray-600 text-sm">
-                                                University of Notre Dame
-                                            </p>
-                                        </div>
-                                    </li>
-
-                                    <!-- Sebastian Pokutta -->
-                                    <li class="p-3 hover:bg-gray-50 transition flex items-center">
-                                        <div class="flex-shrink-0 mr-4">
-                                            <div class="profile-icon">
-                                                <i class="fa-solid fa-user"></i>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div class="text-lg font-bold">
-                                                <a href="https://pokutta.com/" target="_blank" class="text-gray-900 hover:text-blue-700 transition-colors">Sebastian Pokutta</a>
-                                            </div>
-                                            <p class="text-gray-600 text-sm">
-                                                Zuse Institute Berlin (ZIB)
-                                            </p>
-                                        </div>
-                                    </li>
-
-                                    <!-- Melvyn Sim -->
-                                    <li class="p-3 hover:bg-gray-50 transition flex items-center">
-                                        <div class="flex-shrink-0 mr-4">
-                                            <div class="profile-icon">
-                                                <i class="fa-solid fa-user"></i>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div class="text-lg font-bold">
-                                                <a href="https://iora.nus.edu.sg/people-p/melvyn-sim/" target="_blank" class="text-gray-900 hover:text-blue-700 transition-colors">Melvyn Sim</a>
-                                            </div>
-                                            <p class="text-gray-600 text-sm">
-                                                National University of Singapore
-                                            </p>
-                                        </div>
-                                    </li>
-
-                                    <!-- Yong-Sheng Soh -->
-                                    <li class="p-3 hover:bg-gray-50 transition flex items-center">
-                                        <div class="flex-shrink-0 mr-4">
-                                            <div class="profile-icon">
-                                                <i class="fa-solid fa-user"></i>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div class="text-lg font-bold">
-                                                <a href="https://yssoh.github.io/" target="_blank" class="text-gray-900 hover:text-blue-700 transition-colors">Yong-Sheng Soh</a>
-                                            </div>
-                                            <p class="text-gray-600 text-sm">
-                                                National University of Singapore
-                                            </p>
-                                        </div>
-                                    </li>
-
-                                    <!-- Masashi Sugiyama -->
-                                    <li class="p-3 hover:bg-gray-50 transition flex items-center">
-                                        <div class="flex-shrink-0 mr-4">
-                                            <div class="profile-icon">
-                                                <i class="fa-solid fa-user"></i>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div class="text-lg font-bold">
-                                                <a href="https://www.ms.k.u-tokyo.ac.jp/sugi/" target="_blank" class="text-gray-900 hover:text-blue-700 transition-colors">Masashi Sugiyama</a>
-                                            </div>
-                                            <p class="text-gray-600 text-sm">
-                                                The University of Tokyo
-                                            </p>
-                                        </div>
-                                    </li>
-
-                                    <!-- Yinyu Ye -->
-                                    <li class="p-3 hover:bg-gray-50 transition flex items-center">
-                                        <div class="flex-shrink-0 mr-4">
-                                            <div class="profile-icon">
-                                                <i class="fa-solid fa-user"></i>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div class="text-lg font-bold">
-                                                <a href="https://web.stanford.edu/~yyye/" target="_blank" class="text-gray-900 hover:text-blue-700 transition-colors">Yinyu Ye</a>
-                                            </div>
-                                            <p class="text-gray-600 text-sm">
-                                                Stanford University
-                                            </p>
-                                        </div>
-                                    </li>
-
-                                </ul>
+                            <!-- Container for Javascript rendered participants -->
+                            <!-- using 'columns-1 md:columns-2' creates the newspaper-style column flow (down then right) -->
+                            <div id="participants-container" class="columns-1 md:columns-2 gap-4 space-y-4">
+                                <!-- Content will be injected by JS -->
                             </div>
                         </div>
 
@@ -606,7 +487,61 @@
     </div>
 
     <script>
-        // Function to handle section switching
+        // --- Data for Participants (Automatic Sorting) ---
+        const participants = [
+            { name: "Kim-Chuan Toh", sortKey: "Toh", title: "National University of Singapore", link: "https://blog.nus.edu.sg/mattohkc/" },
+            { name: "Nhat Ho", sortKey: "Ho", title: "University of Texas at Austin", link: "https://nhatptnk8912.github.io/" },
+            { name: "Tan Nguyen", sortKey: "Nguyen", title: "National University of Singapore", link: "https://tanmnguyen89.github.io/" },
+            { name: "Tien Mai", sortKey: "Mai", title: "Singapore Management University", link: "https://sites.google.com/view/tien-mai/home" },
+            { name: "Napat Ruieerapaiboon", sortKey: "Ruieerapaiboon", title: "National University of Singapore", link: null },
+            { name: "Stephen P. Boyd", sortKey: "Boyd", title: "Stanford University", link: "https://web.stanford.edu/~boyd/" },
+            { name: "Nitesh V. Chawla", sortKey: "Chawla", title: "University of Notre Dame", link: "https://niteshchawla.nd.edu/" },
+            { name: "Sebastian Pokutta", sortKey: "Pokutta", title: "Zuse Institute Berlin (ZIB)", link: "https://pokutta.com/" },
+            { name: "Melvyn Sim", sortKey: "Sim", title: "National University of Singapore", link: "https://iora.nus.edu.sg/people-p/melvyn-sim/" },
+            { name: "Yong-Sheng Soh", sortKey: "Soh", title: "National University of Singapore", link: "https://yssoh.github.io/" },
+            { name: "Masashi Sugiyama", sortKey: "Sugiyama", title: "The University of Tokyo", link: "https://www.ms.k.u-tokyo.ac.jp/sugi/" },
+            { name: "Yinyu Ye", sortKey: "Ye", title: "Stanford University", link: "https://web.stanford.edu/~yyye/" }
+        ];
+
+        // Function to render participants sorted by column
+        function renderParticipants() {
+            // 1. Sort the data by sortKey (Family Name)
+            participants.sort((a, b) => a.sortKey.localeCompare(b.sortKey));
+
+            const container = document.getElementById('participants-container');
+            if (!container) return;
+            
+            container.innerHTML = ''; // Clear existing
+
+            participants.forEach(p => {
+                // Determine if name should be a link or text
+                const nameHtml = p.link 
+                    ? `<a href="${p.link}" target="_blank" class="text-gray-900 hover:text-blue-700 transition-colors">${p.name}</a>`
+                    : `<span class="text-gray-900">${p.name}</span>`;
+
+                // 'break-inside-avoid' prevents a card from splitting across two columns
+                const card = `
+                    <div class="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition flex items-center break-inside-avoid mb-4">
+                        <div class="flex-shrink-0 mr-4">
+                            <div class="profile-icon">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-lg font-bold">
+                                ${nameHtml}
+                            </div>
+                            <p class="text-gray-600 text-sm">
+                                ${p.title}
+                            </p>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += card;
+            });
+        }
+
+        // --- Standard Navigation Logic ---
         function showSection(targetId) {
             // Hide all sections
             document.querySelectorAll('main section').forEach(section => {
@@ -648,19 +583,19 @@
         
         // Initial Load
         document.addEventListener('DOMContentLoaded', () => {
-             // Check URL hash for deep linking
+             // 1. Render Participants
+             renderParticipants();
+
+             // 2. Navigation Logic
              const hash = window.location.hash.substring(1);
              if (hash && document.getElementById(hash)) {
                  showSection(hash);
              } else {
-                 // Default to Home
                  showSection('home');
              }
              
-             // Set current year in footer
              document.getElementById('year').textContent = new Date().getFullYear();
         });
     </script>
 </body>
 </html>
-
